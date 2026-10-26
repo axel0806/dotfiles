@@ -56,40 +56,41 @@ button:hover {
     box-shadow: inset 0 -3px #ffffff;
 }
 
-/* Pill-shaped workspace buttons. Hover/focus only change colour (no bottom bar),
-   so the label stays visually centred in the pill. */
-#workspaces button {
+/* Pill-shaped workspace modules (one per workspace, see scripts/workspace.py).
+   Hover/focus only change colour (no bottom bar), so the label stays visually centred. */
+#custom-ws1, #custom-ws2, #custom-ws3, #custom-ws4, #custom-ws5 {
     min-width: 24px;
-    min-height: 0;
-    margin: 4px 2px;
     padding: 0 10px;
+    margin: 6px 2px;
     background-color: transparent;
     color: #8a8a8a;
     border-radius: 999px;
-    box-shadow: none;
     transition: background-color .2s ease, color .2s ease;
 }
 
-#workspaces button label {
-    padding: 0;
-    margin: 0;
-}
-
-#workspaces button:hover {
-    background: rgba(255, 255, 255, 0.08);
+#custom-ws1:hover, #custom-ws2:hover, #custom-ws3:hover, #custom-ws4:hover, #custom-ws5:hover {
+    background-color: rgba(255, 255, 255, 0.08);
     color: #dcdcdc;
-    box-shadow: none;
 }
 
-#workspaces button.focused {
-    background-color: rgba(255, 255, 255, 0.14);
-    color: #ffffff;
-    box-shadow: none;
+/* Active workspace: same colour as a full battery */
+#custom-ws1.focused, #custom-ws2.focused, #custom-ws3.focused, #custom-ws4.focused, #custom-ws5.focused {
+    background-color: rgba(220, 220, 220, 1);
+    color: #0c0c0c;
+    font-weight: bold;
 }
 
-#workspaces button.urgent {
-    background-color: rgba(90, 90, 90, 1);
-    color: #ffffff;
+#custom-ws1.focused:hover, #custom-ws2.focused:hover, #custom-ws3.focused:hover, #custom-ws4.focused:hover, #custom-ws5.focused:hover {
+    background-color: rgba(235, 235, 235, 1);
+    color: #0c0c0c;
+}
+
+#custom-ws1.occupied, #custom-ws2.occupied, #custom-ws3.occupied, #custom-ws4.occupied, #custom-ws5.occupied {
+    color: #dcdcdc;
+}
+
+#custom-ws1.empty, #custom-ws2.empty, #custom-ws3.empty, #custom-ws4.empty, #custom-ws5.empty {
+    color: #5a5a5a;
 }
 
 #mode {
@@ -98,7 +99,7 @@ button:hover {
     border-bottom: 3px solid #ffffff;
 }
 
-#clock,
+#custom-clock,
 #battery,
 #cpu,
 #memory,
@@ -122,25 +123,15 @@ button:hover {
     border-radius: 8px;
 }
 
-#window,
-#workspaces {
+#window {
     margin: 0 6px;
 }
 
-/* If workspaces is the leftmost module, keep the edge gap but no extra margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 6px;
-}
-
-/* If workspaces is the rightmost module, keep the edge gap but no extra margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 6px;
-}
-
-#clock {
+#custom-clock {
     background-color: rgba(45, 45, 45, 0.85);
     color: #ffffff;
 }
+
 
 #battery {
     font-family: "JetBrainsMono Nerd Font";
@@ -338,4 +329,24 @@ label:focus {
 
 #scratchpad.empty {
 	background-color: transparent;
+}
+
+/* Clickable modules: brighten the text on hover. The transition lives on the
+   base rule so it animates in both directions. Placed last so the hover colour
+   overrides the state colours above (same specificity, later wins). */
+#network,
+#custom-bluetooth,
+#pulseaudio {
+    transition: color .25s ease;
+}
+
+#network:hover,
+#custom-bluetooth:hover,
+#pulseaudio:hover {
+    color: #ffffff;
+}
+
+/* Keep the connected-bluetooth blue hue, just lighter */
+#custom-bluetooth.connected:hover {
+    color: #c2d9fb;
 }

@@ -1,7 +1,11 @@
 {
     "layer": "top",
     "modules-left": [
-        "hyprland/workspaces",
+        "custom/ws1",
+        "custom/ws2",
+        "custom/ws3",
+        "custom/ws4",
+        "custom/ws5",
         "hyprland/mode"
     ],
 
@@ -14,7 +18,7 @@
         "network",
         "pulseaudio",
         "battery",
-        "clock"
+        "custom/clock"
     ],
 
     "battery": {
@@ -29,21 +33,40 @@
         "tooltip-format": "{timeTo}\n{power}W"
     },
 
-    "clock": {
-        "format-alt": "{:%a, %d. %b  %H:%M}"
+    "custom/clock": {
+        "exec": "~/.config/waybar/scripts/clock-daemon.sh",
+        "return-type": "json",
+        "on-click": "sh -c 'echo toggle > \"${XDG_RUNTIME_DIR:-/tmp}/waybar-clock.fifo\"'"
     },
 
-    "hyprland/workspaces": {
-        "format": "{name}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "active": "",
-            "deafult":""
-        }
+    "custom/ws1": {
+        "exec": "~/.config/waybar/scripts/workspace.py 1",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'"
+    },
+
+    "custom/ws2": {
+        "exec": "~/.config/waybar/scripts/workspace.py 2",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'"
+    },
+
+    "custom/ws3": {
+        "exec": "~/.config/waybar/scripts/workspace.py 3",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'"
+    },
+
+    "custom/ws4": {
+        "exec": "~/.config/waybar/scripts/workspace.py 4",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'"
+    },
+
+    "custom/ws5": {
+        "exec": "~/.config/waybar/scripts/workspace.py 5",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })'"
     },
 
     "network": {
