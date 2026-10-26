@@ -56,20 +56,35 @@ button:hover {
     box-shadow: inset 0 -3px #ffffff;
 }
 
+/* Pill-shaped workspace buttons. Hover/focus only change colour (no bottom bar),
+   so the label stays visually centred in the pill. */
 #workspaces button {
-    padding: 0 5px;
+    min-width: 24px;
+    min-height: 0;
+    margin: 4px 2px;
+    padding: 0 10px;
     background-color: transparent;
-    color: #dcdcdc;
+    color: #8a8a8a;
+    border-radius: 999px;
+    box-shadow: none;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+#workspaces button label {
+    padding: 0;
+    margin: 0;
 }
 
 #workspaces button:hover {
     background: rgba(255, 255, 255, 0.08);
+    color: #dcdcdc;
+    box-shadow: none;
 }
 
 #workspaces button.focused {
-    background-color: rgba(60, 60, 60, 0.8);
+    background-color: rgba(255, 255, 255, 0.14);
     color: #ffffff;
-    box-shadow: inset 0 -3px #ffffff;
+    box-shadow: none;
 }
 
 #workspaces button.urgent {
@@ -91,6 +106,7 @@ button:hover {
 #temperature,
 #backlight,
 #network,
+#custom-bluetooth,
 #pulseaudio,
 #wireplumber,
 #custom-media,
@@ -100,24 +116,25 @@ button:hover {
 #scratchpad,
 #mpd {
     padding: 0 10px;
-    margin: 3px 2px;
+    margin: 6px 4px;
     color: #dcdcdc;
     background-color: rgba(32, 32, 32, 0.8);
+    border-radius: 8px;
 }
 
 #window,
 #workspaces {
-    margin: 0 4px;
+    margin: 0 6px;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
+/* If workspaces is the leftmost module, keep the edge gap but no extra margin */
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+    margin-left: 6px;
 }
 
-/* If workspaces is the rightmost module, omit right margin */
+/* If workspaces is the rightmost module, keep the edge gap but no extra margin */
 .modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
+    margin-right: 6px;
 }
 
 #clock {
@@ -126,6 +143,8 @@ button:hover {
 }
 
 #battery {
+    font-family: "JetBrainsMono Nerd Font";
+    padding: 0 6px;
     background-color: rgba(220, 220, 220, 1);
     color: #0c0c0c;
 }
@@ -177,11 +196,27 @@ label:focus {
 }
 
 #network {
+    font-family: "JetBrainsMono Nerd Font";
     background-color: rgba(45, 45, 45, 0.85);
     color: #dcdcdc;
 }
 
 #network.disconnected {
+    background-color: rgba(90, 90, 90, 1);
+    color: #ffffff;
+}
+
+#custom-bluetooth {
+    font-family: "JetBrainsMono Nerd Font";
+    background-color: rgba(45, 45, 45, 0.85);
+    color: #dcdcdc;
+}
+
+#custom-bluetooth.connected {
+    color: #8ab4f8;
+}
+
+#custom-bluetooth.off {
     background-color: rgba(90, 90, 90, 1);
     color: #ffffff;
 }

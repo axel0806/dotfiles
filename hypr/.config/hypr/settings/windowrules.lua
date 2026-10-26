@@ -31,6 +31,15 @@ hl.window_rule({
     no_focus = true,
 })
 
+-- Dolphin: the acrylic look. Qt windows are opaque, so the window itself is
+-- made translucent; decoration.blur (look.lua) blurs what shows through.
+hl.window_rule({
+    name  = "dolphin-acrylic",
+    match = { class = "org.kde.dolphin" },
+
+    opacity = "0.5 0.5",
+})
+
 -- Layer rules also return a handle.
 -- local overlayLayerRule = hl.layer_rule({
 --     name  = "no-anim-overlay",

@@ -1,0 +1,77 @@
+{
+    "layer": "top",
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/mode"
+    ],
+
+    "modules-center": [
+        "hyprland/windows"
+    ],
+
+    "modules-right": [
+        "custom/bluetooth",
+        "network",
+        "pulseaudio",
+        "battery",
+        "clock"
+    ],
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰂄 {capacity}%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{timeTo}\n{power}W"
+    },
+
+    "clock": {
+        "format-alt": "{:%a, %d. %b  %H:%M}"
+    },
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "active": "",
+            "deafult":""
+        }
+    },
+
+    "network": {
+        "format-wifi": "󰖩  {essid} ({signalStrength}%)",
+        "format-ethernet": "󰈀  {ipaddr}",
+        "format-disconnected": "󰤮  Offline",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ifname}: {ipaddr}/{cidr}",
+        "on-click": "~/.config/waybar/scripts/wifi-menu.sh"
+    },
+
+    "custom/bluetooth": {
+        "exec": "~/.config/waybar/scripts/bt-status.sh",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "~/.config/waybar/scripts/bt-menu.sh"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 Muted",
+        "format-icons": {
+            "default": ["", "", ""],
+            "headphone": "",
+            "headset": ""
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    }
+}
