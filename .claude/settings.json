@@ -1,0 +1,29 @@
+{
+  "model": "haiku",
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "superpowers@anthropic-plugin-directory": true,
+    "code-review-anthropics@anthropic-plugin-directory": true,
+    "code-simplifier@anthropic-plugin-directory": true,
+    "github@anthropic-plugin-directory": true,
+    "claude-md-management@anthropic-plugin-directory": true,
+    "vercel@anthropic-plugin-directory": true,
+    "jmo-workflow@jmo-skills": true,
+    "mobbin@anthropic-plugin-directory": true
+  },
+  "extraKnownMarketplaces": {
+    "jmo-skills": {
+      "source": {
+        "source": "github",
+        "repo": "23jmo/jmo-skills"
+      }
+    }
+  },
+  "modelSettings": {
+    "claude-haiku-5-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "autoUpdatesChannel": "latest",
+  "theme": "dark"
+}
