@@ -1,0 +1,4 @@
+# Editor/browser state: caches, cookies, storage DBs, history (never track)
+.config/VSCodium/*
+!.config/VSCodium/User/
+!.config/VSCodium/User/settings.json
