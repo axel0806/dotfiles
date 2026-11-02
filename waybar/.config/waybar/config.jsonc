@@ -89,9 +89,9 @@
         "format": "{icon} {volume}%",
         "format-muted": "󰝟 Muted",
         "format-icons": {
-            "default": ["", "", ""],
-            "headphone": "",
-            "headset": ""
+            "default": ["󰕿", "󰖀", "󰕾"],
+            "headphone": "󰋋",
+            "headset": "󰋎"
         },
         "scroll-step": 5,
         "on-click": "pavucontrol",

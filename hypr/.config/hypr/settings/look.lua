@@ -53,7 +53,7 @@ hl.config({
     },
 })
 
--- Snappy, no-bounce animations.
+-- Quick, no-bounce animations (about 25% slower than the snappiest preset).
 -- Curves from ML4W "fast" / end-4 (Material 3 emphasized easing). All control
 -- points stay within 0..1, so nothing overshoots. The old spring "easy" was
 -- underdamped (damping ratio ~0.78), which is what made windows wobble.
@@ -67,18 +67,18 @@ hl.curve("linear",      { type = "bezier", points = { {0, 0},      {1, 1}      }
 
 hl.animation({ leaf = "global",           enabled = true, speed = 8,   bezier = "default" })
 hl.animation({ leaf = "border",           enabled = true, speed = 5,   bezier = "md3_decel" })
-hl.animation({ leaf = "windows",          enabled = true, speed = 2.8, bezier = "md3_decel",   style = "popin 80%" })
-hl.animation({ leaf = "windowsIn",        enabled = true, speed = 2.8, bezier = "md3_decel",   style = "popin 80%" })
-hl.animation({ leaf = "windowsOut",       enabled = true, speed = 1.8, bezier = "md3_accel",   style = "popin 90%" })
-hl.animation({ leaf = "windowsMove",      enabled = true, speed = 2.5, bezier = "md3_decel",   style = "slide" })
-hl.animation({ leaf = "fade",             enabled = true, speed = 2.5, bezier = "md3_decel" })
-hl.animation({ leaf = "fadeOut",          enabled = true, speed = 1.8, bezier = "md3_accel" })
-hl.animation({ leaf = "layersIn",         enabled = true, speed = 2.5, bezier = "menu_decel",  style = "fade" })
-hl.animation({ leaf = "layersOut",        enabled = true, speed = 1.6, bezier = "menu_accel",  style = "fade" })
-hl.animation({ leaf = "fadeLayersIn",     enabled = true, speed = 2,   bezier = "menu_decel" })
-hl.animation({ leaf = "fadeLayersOut",    enabled = true, speed = 1.6, bezier = "menu_accel" })
-hl.animation({ leaf = "workspaces",       enabled = true, speed = 3,   bezier = "easeOutExpo", style = "slide" })
-hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 2.8, bezier = "md3_decel",   style = "slidevert" })
+hl.animation({ leaf = "windows",          enabled = true, speed = 3.5, bezier = "md3_decel",   style = "popin 80%" })
+hl.animation({ leaf = "windowsIn",        enabled = true, speed = 3.5, bezier = "md3_decel",   style = "popin 80%" })
+hl.animation({ leaf = "windowsOut",       enabled = true, speed = 2.3, bezier = "md3_accel",   style = "popin 90%" })
+hl.animation({ leaf = "windowsMove",      enabled = true, speed = 3.2, bezier = "md3_decel",   style = "slide" })
+hl.animation({ leaf = "fade",             enabled = true, speed = 3, bezier = "md3_decel" })
+hl.animation({ leaf = "fadeOut",          enabled = true, speed = 2.2, bezier = "md3_accel" })
+hl.animation({ leaf = "layersIn",         enabled = true, speed = 3, bezier = "menu_decel",  style = "fade" })
+hl.animation({ leaf = "layersOut",        enabled = true, speed = 2, bezier = "menu_accel",  style = "fade" })
+hl.animation({ leaf = "fadeLayersIn",     enabled = true, speed = 2.5,   bezier = "menu_decel" })
+hl.animation({ leaf = "fadeLayersOut",    enabled = true, speed = 2, bezier = "menu_accel" })
+hl.animation({ leaf = "workspaces",       enabled = true, speed = 3.8,   bezier = "easeOutExpo", style = "slide" })
+hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 3.5, bezier = "md3_decel",   style = "slidevert" })
 hl.animation({ leaf = "zoomFactor",       enabled = true, speed = 3,   bezier = "md3_decel" })
 
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
