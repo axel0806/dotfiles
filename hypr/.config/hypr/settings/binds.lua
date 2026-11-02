@@ -3,7 +3,7 @@
 ---------------------
 
 -- Set programs that you use
-local terminal    = "kitty"
+local terminal    = "kitty --single-instance"
 local fileManager = "nautilus"
 local menu = "rofi -show drun"
 local browser = "librewolf"
