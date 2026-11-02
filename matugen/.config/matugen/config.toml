@@ -1,0 +1,21 @@
+# Wallpaper-based kitty colors. (Hyprland borders are made by
+# ~/.config/hypr/scripts/border-colors.py so they contrast with the wallpaper.)
+# Rendered by ~/.config/hypr/scripts/wallpaper.sh:
+#   matugen image <wallpaper> -m dark --source-color-index 0
+
+[config]
+
+# Classic terminal hues, pulled toward the wallpaper's palette (blend = true)
+# so ANSI colors match the wallpaper but stay recognisable.
+[config.custom_colors]
+red     = { color = "#e5534b", blend = true }
+green   = { color = "#6bbf59", blend = true }
+yellow  = { color = "#e0b84f", blend = true }
+blue    = { color = "#4f8fe0", blend = true }
+magenta = { color = "#c561c9", blend = true }
+cyan    = { color = "#3fb8b0", blend = true }
+
+[templates.kitty]
+input_path  = '~/.config/matugen/templates/kitty-colors.conf'
+output_path = '~/.config/kitty/colors-wallpaper.conf'
+post_hook   = 'pkill -USR1 -x kitty || true'

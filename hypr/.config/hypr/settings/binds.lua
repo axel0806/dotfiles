@@ -41,6 +41,11 @@ hl.bind(mainMod .. " + SHIFT + down",	hl.dsp.window.move({ direction = "down" })
 -- Waybar reload
 hl.bind(mainMod .. " + R",  hl.dsp.exec_cmd("/home/axel/.config/waybar/scripts/launch.sh"))
 
+-- Wallpaper: SUPER+W opens the picker, SUPER+SHIFT+W picks a random one.
+-- Kitty and border colors follow the wallpaper (matugen).
+hl.bind(mainMod .. " + W",         hl.dsp.exec_cmd("/home/axel/.config/hypr/scripts/wallpaper.sh pick"))
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("/home/axel/.config/hypr/scripts/wallpaper.sh random"))
+
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do

@@ -10,6 +10,7 @@
 hl.on("hyprland.start", function () 
     hl.exec_cmd("waybar")
     hl.exec_cmd("swaync")
-    hl.exec_cmd("hyprpaper")
+    hl.exec_cmd("awww-daemon")
+    hl.exec_cmd("/home/axel/.config/hypr/scripts/wallpaper.sh restore")
     hl.exec_cmd("hypridle")
 end)
