@@ -107,6 +107,3 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="$HOME/.local/bin:$PATH"
-alias ff='python3 ~/.config/fastfetch/spin.py'
-alias ff='python3 ~/.config/fastfetch/spin.py'
-fastfetch() { if [[ $# -eq 0 && -t 1 ]]; then python3 ~/.config/fastfetch/spin.py; else command fastfetch "$@"; fi }

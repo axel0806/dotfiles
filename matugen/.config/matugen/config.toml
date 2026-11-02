@@ -19,3 +19,11 @@ cyan    = { color = "#3fb8b0", blend = true }
 input_path  = '~/.config/matugen/templates/kitty-colors.conf'
 output_path = '~/.config/kitty/colors-wallpaper.conf'
 post_hook   = 'pkill -USR1 -x kitty || true'
+
+[templates.fastfetch]
+input_path  = '~/.config/matugen/templates/fastfetch.jsonc'
+output_path = '~/.config/fastfetch/config.jsonc'
+
+[templates.fetch]
+input_path  = '~/.config/matugen/templates/fetch.conf'
+output_path = '~/.config/fetch/config'
