@@ -4,6 +4,10 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# T3 Code Telemetry
+export T3CODE_TELEMETRY_ENABLED=false
+
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -103,3 +107,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="$HOME/.local/bin:$PATH"
+alias ff='python3 ~/.config/fastfetch/spin.py'
+alias ff='python3 ~/.config/fastfetch/spin.py'
+fastfetch() { if [[ $# -eq 0 && -t 1 ]]; then python3 ~/.config/fastfetch/spin.py; else command fastfetch "$@"; fi }

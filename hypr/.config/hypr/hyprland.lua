@@ -26,4 +26,5 @@ require('settings.layout')
 require('settings.misc')
 require('settings.input')
 require('settings.windowrules')
+require("hyprland-gui")
 
