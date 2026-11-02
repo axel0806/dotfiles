@@ -66,13 +66,17 @@ element {
     border:        0;
     border-radius: 6px;
     padding:       4px ;
+    spacing:       8px ;
 }
 element-text {
     background-color: transparent;
     text-color:       inherit;
+    vertical-align:   0.5;
 }
 element-icon {
     background-color: transparent;
+    size:             22px;
+    vertical-align:   0.5;
 }
 element.normal.normal {
     background-color: @normal-background;
