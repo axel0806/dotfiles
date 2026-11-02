@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Impasto-Acrylic
+Comment=Dark, translucent GTK theme for the impasto desk
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Impasto-Acrylic
+MetacityTheme=Impasto-Acrylic
+IconTheme=WhiteSur-dark
+CursorTheme=Adwaita
+ButtonLayout=:minimize,maximize,close

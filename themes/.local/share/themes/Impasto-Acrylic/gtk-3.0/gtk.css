@@ -1,0 +1,734 @@
+/* Impasto Acrylic
+   Adwaita-dark for complete widget coverage, with translucent surfaces on
+   top so Hyprland's blur shows through. Accent is static (see @accent). */
+
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained-dark.css");
+
+/* ---------- palette ---------- */
+@define-color accent        #6ea8d9;
+@define-color accent_soft   rgba(110, 168, 217, 0.28);
+@define-color accent_faint  rgba(110, 168, 217, 0.14);
+@define-color selection     #2a6fd6;   /* solid, macOS-style selection blue */
+@define-color selection_fg  #ffffff;
+
+@define-color surface       rgba(12, 12, 15, 0.62);
+@define-color surface_alt   rgba(255, 255, 255, 0.035);
+@define-color surface_popup rgba(18, 18, 22, 0.86);
+@define-color hover         rgba(255, 255, 255, 0.06);
+@define-color pressed       rgba(255, 255, 255, 0.10);
+@define-color hairline      rgba(255, 255, 255, 0.08);
+@define-color hairline_hi   rgba(255, 255, 255, 0.14);
+
+@define-color fg            #e2e2e6;
+@define-color fg_dim        #9a9aa3;
+@define-color fg_off        #66666e;
+
+/* names apps and GTK itself look up */
+@define-color theme_bg_color             @surface;
+@define-color theme_fg_color             @fg;
+@define-color theme_base_color           transparent;
+@define-color theme_text_color           @fg;
+@define-color theme_selected_bg_color    @selection;
+@define-color theme_selected_fg_color    @selection_fg;
+@define-color theme_unfocused_bg_color   @surface;
+@define-color theme_unfocused_fg_color   @fg_dim;
+@define-color theme_unfocused_base_color transparent;
+@define-color theme_unfocused_text_color @fg_dim;
+@define-color insensitive_bg_color       transparent;
+@define-color insensitive_fg_color       @fg_off;
+@define-color borders                    @hairline;
+@define-color unfocused_borders          @hairline;
+
+/* ---------- windows ---------- */
+window,
+window.background,
+.background,
+dialog,
+messagedialog,
+window.csd,
+window.solid-csd {
+    background-color: @surface;
+    color: @fg;
+}
+
+/* the client-side decoration draws the outer frame; let Hyprland do
+   rounding, border and shadow instead */
+decoration,
+window.csd decoration,
+window.csd:backdrop decoration {
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+}
+
+/* everything that Adwaita paints opaque on top of the window */
+.view,
+treeview.view,
+iconview,
+.content-view,
+textview,
+textview text,
+scrolledwindow,
+viewport,
+notebook,
+notebook > stack:not(:only-child),
+stack,
+grid,
+paned > separator,
+statusbar,
+frame > border,
+list,
+row {
+    background-color: transparent;
+    background-image: none;
+    color: @fg;
+}
+
+frame > border,
+scrolledwindow.frame {
+    border-color: @hairline;
+}
+
+/* Pane handle: Adwaita gives it an invisible 8px grab area (padding +
+   negative margin over the neighbour pane) and draws only a 1px line as a
+   background-image. Keep that: a background-color would fill the whole grab
+   area and show up as a 9px strip next to Thunar's sidebar. */
+paned > separator,
+paned > separator:backdrop,
+paned > separator.wide,
+paned > separator.wide:backdrop {
+    background-color: transparent;
+    background-image: image(@hairline);
+    background-size: 1px 1px;
+    border: none;
+    box-shadow: none;
+}
+
+/* ---------- header bars, toolbars, menubar ---------- */
+headerbar,
+.titlebar,
+headerbar:backdrop,
+.titlebar:backdrop,
+toolbar,
+menubar,
+.toolbar,
+searchbar,
+searchbar > revealer > box,
+actionbar {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border-color: @hairline;
+    color: @fg;
+}
+
+headerbar,
+.titlebar {
+    border-bottom: 1px solid @hairline;
+    min-height: 38px;
+    padding: 0 8px;
+}
+
+toolbar {
+    padding: 6px 8px;
+    border-bottom: 1px solid @hairline;
+}
+
+menubar {
+    padding: 0 4px;
+    border-bottom: 1px solid @hairline;
+}
+
+menubar > menuitem {
+    padding: 4px 10px;
+    min-height: 0;
+    border-radius: 6px;
+}
+
+menubar > menuitem:hover {
+    background-color: @hover;
+    box-shadow: none;
+    color: @fg;
+}
+
+/* ---------- buttons ---------- */
+button {
+    background-image: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-shadow: none;
+    text-shadow: none;
+    -gtk-icon-shadow: none;
+    color: @fg;
+    padding: 4px 9px;
+    min-height: 20px;
+    min-width: 20px;
+    transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+/* standalone buttons (dialogs etc.) get a visible body */
+dialog button,
+messagedialog button,
+.dialog-action-area button,
+box > button:not(.flat):not(.image-button):not(.sidebar-button) {
+    background-color: @surface_alt;
+    border-color: @hairline;
+}
+
+button:hover {
+    background-color: @hover;
+    border-color: @hairline;
+}
+
+button:active,
+button:checked {
+    background-color: @accent_soft;
+    border-color: transparent;
+    color: @fg;
+}
+
+button:disabled {
+    background-color: transparent;
+    border-color: transparent;
+    color: @fg_off;
+}
+
+button.suggested-action {
+    background-color: @accent;
+    border-color: transparent;
+    color: #0c0c0f;
+}
+
+button.suggested-action:hover {
+    background-color: shade(@accent, 1.1);
+}
+
+button.destructive-action {
+    background-color: rgba(224, 82, 82, 0.8);
+    border-color: transparent;
+    color: #ffffff;
+}
+
+/* back/forward/up in Thunar's toolbar: separate rounded buttons */
+toolbar .linked > button,
+.linked > button {
+    border-radius: 8px;
+    margin: 0 1px;
+}
+
+toolbar button,
+headerbar button,
+pathbar button {
+    margin: 0 2px;
+}
+
+/* ---------- entries / location bar ---------- */
+entry,
+spinbutton:not(.vertical),
+.linked > entry {
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid @hairline;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @fg;
+    caret-color: @accent;
+    min-height: 30px;
+    padding: 0 10px;
+}
+
+entry:focus,
+spinbutton:focus:not(.vertical) {
+    border-color: @accent;
+    box-shadow: inset 0 0 0 1px @accent_soft;
+    background-color: transparent;
+}
+
+entry:disabled {
+    background-color: transparent;
+    color: @fg_off;
+}
+
+entry selection,
+entry text selection {
+    background-color: @selection;
+    color: @selection_fg;
+}
+
+entry image {
+    color: @fg_dim;
+}
+
+/* Thunar's path buttons */
+pathbar,
+.path-bar {
+    background-color: transparent;
+}
+
+pathbar button,
+.path-bar button {
+    border-radius: 8px;
+    padding: 3px 9px;
+}
+
+pathbar button:checked,
+.path-bar button:checked {
+    background-color: @accent_faint;
+    color: @fg;
+}
+
+/* ---------- sidebar (Thunar places / tree) ---------- */
+/* same surface as the file view: one uniform pane of glass */
+.sidebar,
+placessidebar,
+.thunar .sidebar,
+.sidebar scrolledwindow,
+.sidebar viewport,
+paned > scrolledwindow:first-child,
+paned > scrolledwindow:first-child treeview {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+.sidebar row,
+placessidebar row {
+    border-radius: 8px;
+    margin: 1px 6px;
+    padding: 0 6px;
+    min-height: 30px;
+}
+
+.sidebar row:hover,
+placessidebar row:hover {
+    background-color: @hover;
+}
+
+.sidebar row:selected,
+placessidebar row:selected,
+.sidebar treeview:selected,
+.sidebar .view:selected {
+    background-color: @selection;
+    color: @selection_fg;
+}
+
+.sidebar .view,
+.sidebar treeview {
+    background-color: transparent;
+}
+
+/* section headers in the shortcuts pane */
+treeview.view header button,
+.sidebar treeview header button {
+    background-color: transparent;
+    border: none;
+    color: @fg_dim;
+    font-weight: bold;
+}
+
+/* ---------- file views ---------- */
+treeview.view {
+    border-color: @hairline;
+}
+
+treeview.view:hover {
+    background-color: @hover;
+}
+
+treeview.view:selected,
+treeview.view:selected:focus,
+.view:selected,
+.view:selected:focus,
+iconview:selected,
+iconview:selected:focus,
+.view text:selected,
+flowboxchild:selected,
+row:selected {
+    background-color: @selection;
+    color: @selection_fg;
+    border-radius: 6px;
+}
+
+/* treeview column headers (details view) */
+treeview.view header button,
+column-header button {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-bottom: 1px solid @hairline;
+    border-radius: 0;
+    color: @fg_dim;
+    padding: 4px 8px;
+}
+
+treeview.view header button:hover {
+    background-color: @hover;
+    color: @fg;
+}
+
+/* rubber-band selection */
+.rubberband,
+rubberband,
+treeview.view.rubberband,
+iconview.rubberband,
+flowbox rubberband {
+    background-color: @accent_faint;
+    border: 1px solid @accent;
+    border-radius: 4px;
+}
+
+/* drag-and-drop target */
+:drop(active),
+treeview.view:drop(active) {
+    box-shadow: inset 0 0 0 1px @accent;
+}
+
+/* ---------- status bar ---------- */
+statusbar {
+    border-top: 1px solid @hairline;
+    padding: 2px 10px;
+    color: @fg_dim;
+    font-size: 0.92em;
+}
+
+/* ---------- scrollbars ---------- */
+scrollbar,
+scrollbar.overlay-indicator,
+scrollbar trough {
+    background-color: transparent;
+    border: none;
+}
+
+scrollbar slider {
+    background-color: rgba(255, 255, 255, 0.22);
+    border: 3px solid transparent;
+    border-radius: 10px;
+    min-width: 5px;
+    min-height: 5px;
+}
+
+scrollbar slider:hover {
+    background-color: rgba(255, 255, 255, 0.38);
+}
+
+scrollbar slider:active {
+    background-color: @accent;
+}
+
+scrollbar.overlay-indicator:not(.dragging):not(.hovering) slider {
+    background-color: rgba(255, 255, 255, 0.35);
+    border: 1px solid transparent;
+    min-width: 3px;
+    min-height: 3px;
+}
+
+undershoot.top, undershoot.bottom,
+undershoot.left, undershoot.right,
+overshoot.top, overshoot.bottom,
+overshoot.left, overshoot.right {
+    background: none;
+    box-shadow: none;
+}
+
+/* ---------- menus, popovers, tooltips ---------- */
+menu,
+.menu,
+.context-menu,
+window.popup,
+window.popup.background {
+    background-color: @surface_popup;
+    color: @fg;
+    border: 1px solid @hairline_hi;
+    border-radius: 10px;
+    padding: 4px;
+}
+
+menu menuitem,
+.menu menuitem,
+.context-menu menuitem {
+    border-radius: 6px;
+    padding: 5px 10px;
+    min-height: 18px;
+    text-shadow: none;
+}
+
+menu menuitem:hover,
+.menu menuitem:hover,
+.context-menu menuitem:hover {
+    background-color: @accent_soft;
+    color: @fg;
+}
+
+menu menuitem:disabled {
+    color: @fg_off;
+}
+
+menu menuitem accelerator {
+    color: @fg_dim;
+}
+
+menu separator,
+.menu separator {
+    background-color: @hairline;
+    margin: 4px 6px;
+}
+
+menu arrow {
+    min-width: 14px;
+    min-height: 14px;
+}
+
+popover,
+popover.background {
+    background-color: @surface_popup;
+    color: @fg;
+    border: 1px solid @hairline_hi;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    padding: 6px;
+}
+
+popover modelbutton {
+    border-radius: 6px;
+    padding: 5px 10px;
+}
+
+popover modelbutton:hover {
+    background-color: @accent_soft;
+}
+
+tooltip,
+tooltip.background {
+    background-color: rgba(18, 18, 22, 0.92);
+    color: @fg;
+    border: 1px solid @hairline_hi;
+    border-radius: 8px;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+tooltip * {
+    background-color: transparent;
+    color: @fg;
+}
+
+/* ---------- checks, radios, switches ---------- */
+check,
+radio {
+    background-image: none;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid @hairline_hi;
+    box-shadow: none;
+    color: #0c0c0f;
+    min-width: 14px;
+    min-height: 14px;
+}
+
+check { border-radius: 4px; }
+radio { border-radius: 50%; }
+
+check:hover,
+radio:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+check:checked,
+check:indeterminate,
+radio:checked {
+    background-color: @accent;
+    border-color: @accent;
+    color: #0c0c0f;
+}
+
+switch {
+    background-color: rgba(255, 255, 255, 0.10);
+    background-image: none;
+    border: 1px solid @hairline;
+    border-radius: 14px;
+    box-shadow: none;
+    color: transparent;
+}
+
+switch:checked {
+    background-color: @accent;
+    border-color: @accent;
+}
+
+switch slider {
+    background-image: none;
+    background-color: #e8e8ec;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- notebooks (properties dialog, tabs) ---------- */
+notebook > header {
+    background-color: transparent;
+    border-color: @hairline;
+    box-shadow: none;
+}
+
+notebook > header tab {
+    border-radius: 8px;
+    margin: 4px 2px;
+    padding: 4px 12px;
+    color: @fg_dim;
+    box-shadow: none;
+}
+
+notebook > header tab:hover {
+    background-color: @hover;
+    color: @fg;
+}
+
+notebook > header tab:checked {
+    background-color: @accent_faint;
+    color: @fg;
+    box-shadow: none;
+}
+
+notebook > header.top > tabs > tab:checked {
+    box-shadow: inset 0 -2px @accent;
+}
+
+/* ---------- comboboxes, scales, progress ---------- */
+combobox button.combo {
+    background-color: @surface_alt;
+    border-color: @hairline;
+}
+
+scale trough,
+progressbar trough,
+levelbar trough {
+    background-color: rgba(255, 255, 255, 0.10);
+    border: none;
+    border-radius: 6px;
+}
+
+scale highlight,
+progressbar progress,
+levelbar block.filled {
+    background-color: @accent;
+    border: none;
+    border-radius: 6px;
+}
+
+scale slider {
+    background-image: none;
+    background-color: #e8e8ec;
+    border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- misc ---------- */
+separator {
+    background-color: @hairline;
+}
+
+*:selected,
+selection {
+    background-color: @selection;
+    color: @selection_fg;
+}
+
+*:disabled {
+    color: @fg_off;
+}
+
+*:focus {
+    outline-color: rgba(110, 168, 217, 0.5);
+    -gtk-outline-radius: 6px;
+}
+
+label.dim-label,
+.dim-label {
+    color: @fg_dim;
+}
+
+link,
+*:link {
+    color: @accent;
+}
+
+infobar,
+infobar.info > revealer > box {
+    background-color: @accent_faint;
+    border: none;
+}
+
+/* Thunar's loading spinner stays stuck on its frame; hide it */
+spinner {
+    opacity: 0;
+}
+
+/* ---------- uniformity fixes ----------
+   Adwaita repaints many surfaces opaque when a window loses focus
+   (:backdrop) and gives scrollbars their own bar + border. Keep them all on
+   the same translucent surface so nothing shifts or shows seams. */
+.background:backdrop,
+window:backdrop,
+headerbar:backdrop,
+.titlebar:backdrop:not(headerbar),
+.content-view:backdrop,
+iconview:backdrop,
+iconview text:backdrop,
+list:backdrop,
+.view:backdrop,
+.view text:backdrop,
+textview text:backdrop,
+.sidebar:backdrop,
+separator.sidebar:backdrop,
+searchbar > revealer > box:backdrop,
+.inline-toolbar:backdrop,
+.location-bar,
+.location-bar:backdrop,
+scrolledwindow junction,
+scrolledwindow junction:backdrop {
+    background-color: transparent;
+    background-image: none;
+    border-color: @hairline;
+}
+
+.background:backdrop,
+window:backdrop {
+    background-color: @surface;
+}
+
+entry:backdrop,
+entry:backdrop:disabled {
+    background-color: transparent;
+    border-color: @hairline;
+}
+
+
+scrollbar,
+scrollbar:backdrop,
+scrollbar.top, scrollbar.bottom,
+scrollbar.left, scrollbar.right,
+treeview ~ scrollbar.vertical {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+}
+
+scrollbar slider:backdrop {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar:not(separator),
+.sidebar:not(separator):dir(ltr),
+.sidebar:not(separator).left {
+    border: none;
+}
+
+/* Only the toplevel window paints the translucent surface. Some Thunar
+   containers also carry .background; painting them too stacks a second dark
+   layer and leaves lighter seams wherever the layers don't overlap. */
+window.background .background,
+window.background .background:backdrop {
+    background-color: transparent;
+}

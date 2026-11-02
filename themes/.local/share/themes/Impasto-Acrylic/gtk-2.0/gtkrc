@@ -1,0 +1,4 @@
+# Impasto Acrylic for GTK 2. GTK 2 has no alpha, so this is the kitty palette
+# only; the translucency lives in the GTK 3 theme.
+gtk-color-scheme = "bg_color:#000000\nfg_color:#dddddd\nbase_color:#000000\ntext_color:#dddddd\nselected_bg_color:#0d73cc\nselected_fg_color:#ffffff\ntooltip_bg_color:#111111\ntooltip_fg_color:#dddddd"
+gtk-icon-theme-name = "Adwaita"
