@@ -11,7 +11,8 @@ GNU Stow packages for an Arch + Hyprland setup. Link a package with
   `-l` themes GTK4/libadwaita apps such as Nautilus). Install `sassc` first,
   otherwise the installer runs a full `pacman -Syyu`.
 - Icons: [WhiteSur](https://github.com/vinceliuice/WhiteSur-icon-theme),
-  installed with `./install.sh -d ~/.local/share/icons` (`WhiteSur-dark` is used,
+  installed with `./install.sh -a -d ~/.local/share/icons` (`-a` = alternative
+  redesigned macOS app icons; `WhiteSur-dark` is used,
   also by rofi)
 - `themes/` still holds the older translucent Impasto-Acrylic GTK theme
 
